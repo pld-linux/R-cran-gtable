@@ -1,14 +1,15 @@
 %define		fversion	%(echo %{version} |tr r -)
 %define		modulename	gtable
+%undefine	_debugsource_packages
 Summary:	Arrange grobs in tables
 Name:		R-cran-%{modulename}
-Version:	0.1.2
-Release:	2
+Version:	0.3.6
+Release:	1
 License:	GPL v2
 Group:		Applications/Math
-Source0:	ftp://stat.ethz.ch/R-CRAN/src/contrib/%{modulename}_%{fversion}.tar.gz
-# Source0-md5:	be491aa5220f0059a0e1cb04679b6563
-URL:		http://cran.fhcrc.org/web/packages/gtable/index.html
+Source0:	https://cran.r-project.org/src/contrib/%{modulename}_%{fversion}.tar.gz
+# Source0-md5:	545f07ada570ec8e3f4b22843974ac6d
+URL:		https://cran.r-project.org/web/packages/gtable/index.html
 BuildRequires:	R >= 2.8.1
 Requires(post,postun):	R >= 2.8.1
 Requires(post,postun):	perl-base
@@ -23,7 +24,7 @@ Tools to make it easier to work with "tables" of grobs.
 %setup -q -c
 
 %build
-R CMD build %{modulename}
+R CMD build --no-build-vignettes %{modulename}
 
 %install
 rm -rf $RPM_BUILD_ROOT
